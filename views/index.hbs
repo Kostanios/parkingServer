@@ -1,0 +1,18 @@
+<h2>Страница стоянки</h2>
+{{#if  nomers.length}}
+  <ul>
+    {{#each nomers}}
+    <li>
+      {{#if arrivalDate}}
+        <span>{{nomer}}</span>
+        <span>{{arrivalDate}}</span>
+      {{else}}
+        нет номера
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+{{else}}
+<p>Нет Машин на стоянке!</p>
+
+{{/if}}
