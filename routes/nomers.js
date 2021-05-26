@@ -14,12 +14,18 @@ router.get('/', async (req, res)=>{
 
 router.post('/create', async (req, res)=>{
    const query = req.query
-   const todo = new Nomer ({
-      nomer: query.nomer,
-      arrivalDate: new Date().getTime(),
-   })
-   await todo.save()
-
+   const dbnomer = await (await Nomer.find().lean()).find(machine => machine.nomer ===  query.nomer)
+   if (dbnomer) {
+      const del = await Nomer.remove({nomer: query.nomer})
+      console.log(del.deletedCount)
+   } else {
+      const todo = new Nomer ({
+         nomer: query.nomer,
+         arrivalDate: new Date().getTime(),
+      })
+      await todo.save()
+   }
+   //Nomer.remove()
    res.redirect('/');
 })
 
