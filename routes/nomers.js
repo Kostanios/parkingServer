@@ -8,7 +8,7 @@ router.get('/', async (req, res)=>{
    res.render('index',{
       title: 'номера',
       isIndex: true,
-      nomers,
+      nomers: nomers.map(machine => {machine.arrivalDate = new Date(Number(machine.arrivalDate)); return machine}),
    });
 })
 
